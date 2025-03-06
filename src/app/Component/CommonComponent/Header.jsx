@@ -47,8 +47,8 @@ export default function Header() {
           </div>
           {/* Header Content work */}
           <div className='  max-w-[1000px] mt-[200px] relative z-[10] flex justify-center '>
-             <div className=' w-[850px] border-l-4 border-blue-700 p-12 text-white'>
-             <h1 className='text-7xl leading-24 font-sans' >With Edumy, Learning Never Ends </h1>
+             <div className=' w-[850px] border-l-4 border-blue-700 p-8 md:p-12 text-white'>
+             <h1 className='text-6xl md:text-7xl md:leading-24 font-sans' >With Edumy, Learning Never Ends </h1>
              </div>
           </div>
       </header>
