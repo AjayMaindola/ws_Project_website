@@ -8,22 +8,33 @@ import logo from "../../../../public/images/header/logo/logo.svg"
 export default function Header() {
     // this state and given ChangeHeaderBg function for only use header 
    let[headerScrol,setHeaderScrol]= useState(false)
-   let ChangeHeaderBg=()=>{
-    if(window.scrollY>76){
-        setHeaderScrol(true)
-        console.log(headerScrol)
-    }
-    else{
-        setHeaderScrol(false)
-    }
-   }
 
- window.addEventListener("scroll",ChangeHeaderBg)
+    useEffect(() => {
+      let ChangeHeaderBg=()=>{
+        if(window.scrollY>76){
+            setHeaderScrol(true)
+            console.log(headerScrol)
+        }
+        else{
+            setHeaderScrol(false)
+        }
+       }
+
+       if(typeof window !== undefined) {
+        window.addEventListener("scroll",ChangeHeaderBg)
+       }
+    
+    return () => {
+      window.removeEventListener("scroll",ChangeHeaderBg)
+    }
+    },[])
+
+   
   return (
     <>
-      <header className="bg-[url('/images/header/backgraound.jpg')] bg-no-repeat relative h-[90vh]  ">
-        <div className="bg-black w-full z-[1] h-full opacity-50 absolute"></div>
-          <div className={`w-screen ${headerScrol ? "bg-teal-500 text-teal-100 md:text-black md:bg-white sticky top-0 z-[10]" : "relative z-[10] text-white" }`}>
+      <header className="bg-[url('/images/header/backgraound.jpg')] bg-no-repeat relative h-screen  ">
+        <div className="bg-black w-full z-[1] h-[90vh] opacity-50 absolute"></div>
+          <div className={`w-screen ${headerScrol ? "bg-teal-500 text-teal-100 md:text-black md:bg-white sticky top-0 z-[10] " : "relative z-[10] text-white " }`}>
               <div className=' max-w-[1340px] mx-auto pl-3 md:pl-[35px] lg:px-[10px] py-3 md:py-5 grid grid-cols-[60%_40%] md:gap-3 lg:gap-0 md:grid md:grid-cols-[15%_60%_20%] lg:grid lg:grid-cols-[15%_60%_auto] items-center'>
                 <div className=' text-2xl font-extrabold font-serif flex items-center md:justify-center gap-4 md:gap-4 '>
                   <Image src={logo} width={60} alt={logo} />
